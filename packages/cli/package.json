@@ -23,7 +23,7 @@
   "homepage": "https://vitepress.open17.vip",
   "dependencies": {
     "commander": "^11.1.0",
-    "inquirer": "^9.2.11",
+    "inquirer": "^12.9.3",
     "chalk": "^5.3.0",
     "ora": "^7.0.1",
     "fs-extra": "^11.1.1",
