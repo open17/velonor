@@ -132,3 +132,7 @@ docs/.vitepress/cache/*
 
 ./package-lock.json
 ./yarn.lock
+
+
+.codex
+.agents

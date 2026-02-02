@@ -1,31 +1,31 @@
 <template>
     <!-- 电脑端 -->
-    <div class="hidden md:flex w-full md:rounded-xl p-5 flex-col justify-center items-center gap-2 dark:shadow-none shadow-md border-2 border-[var(--blog-border-c)] bg-[var(--vp-c-blog-bg)] opacity-85 backdrop-blur-md"
-        v-if="!props.isMobile">
+    <div class="hidden md:flex w-full md:rounded-2xl p-6 flex-col justify-center items-center gap-2 dark:shadow-none shadow-lg border-2 border-[var(--blog-border-c)] bg-[var(--vp-c-blog-bg)]/95 backdrop-blur-md"
+        v-if="!props.isMobile && !userConfig?.hidden">
         <!-- Avatar -->
         <img :src="userConfig?.avatar" v-if="userConfig?.avatar" alt="avatar"
-            class="object-cover object-center w-full rounded-xl" />
+            class="object-cover object-center w-24 h-24 rounded-full ring-2 ring-[var(--blog-border-c)]" />
         <div class="mt-3" v-else></div>
         <!-- Name -->
-        <div class="text-xl font-bold text-center mt-2">
+        <div class="text-lg font-semibold text-center mt-2 tracking-tight">
             {{ userConfig?.name }}
         </div>
         <!-- Description -->
-        <div class="text-center text-sm font-semibold">{{ userConfig?.describe }}</div>
+        <div class="text-center text-xs opacity-75 leading-relaxed">{{ userConfig?.describe }}</div>
         <!-- Stats -->
-        <div class="flex justify-center items-center gap-20 w-full border-t-2 pt-5 border-dashed mt-2">
+        <div class="flex justify-center items-center gap-12 w-full border-t-2 mt-3 border-[var(--blog-border-c)]/70">
             <div class="flex flex-col justify-center items-center gap-1">
-                <div class="text-sm">{{ postsText }}</div>
-                <div class="text-xl">{{ posts.length }}</div>
+                <div class="text-[10px] uppercase tracking-wider opacity-70">{{ postsText }}</div>
+                <div class="text-xl font-semibold">{{ posts.length }}</div>
             </div>
             <div class="flex flex-col justify-center items-center gap-1">
-                <div class="text-sm">{{ tagsText }}</div>
-                <div class="text-xl">{{ uniqueTagCount }}</div>
+                <div class="text-[10px] uppercase tracking-wider opacity-70">{{ tagsText }}</div>
+                <div class="text-xl font-semibold">{{ uniqueTagCount }}</div>
             </div>
         </div>
     </div>
     <!-- 移动端个人信息显示 -->
-    <div class="flex md:hidden justify-center items-center w-full mt-10 flex-col gap-3" v-else>
+    <div class="flex md:hidden justify-center items-center w-full mt-8 flex-col gap-3" v-else-if="!userConfig?.hidden">
         <img :src="userConfig?.avatar" v-if="userConfig?.avatar" alt="avatar"
             class="object-cover object-center w-32 rounded-full" />
         <!-- 昵称 -->
@@ -42,7 +42,7 @@
 import { data as posts } from '../posts.data.js';
 
 import { useData } from 'vitepress';
-import { defineProps, computed } from 'vue';
+import { computed } from 'vue';
 import { getLocalizedString } from '../utils/constants';
 import { useTags } from '../composables/useTags';
 

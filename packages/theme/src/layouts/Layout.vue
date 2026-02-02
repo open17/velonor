@@ -3,7 +3,7 @@
     <div id="Loading" v-if="isLoading"></div>
   </Transition>
 
-  <div class="fixed top-20 right-5 z-50" v-if="isPostPage">
+  <div class="fixed bottom-6 right-6 z-50" v-if="isPostPage">
     <button @click="togglePostPage" class="layout-toggle-btn"
       :title="switchPageStyle ? getLocalizedString('switchToNormalPage', lang) : getLocalizedString('switchToPostPage', lang)">
       <svg v-if="switchPageStyle" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -22,21 +22,45 @@
     <div class="w-full flex justify-center">
       <div
         class="flex w-full max-w-screen-2xl justify-center items-start pt-0 my-0 gap-5 md:px-20 flex-col-reverse md:flex-row">
-        <div class="bg-transparent w-full md:w-1/4 justify-start items-start py-16 mt-5 md:mt-5 flex-col gap-5">
-          <div class="flex flex-col gap-5 w-full">
+        <div class="bg-transparent w-full md:w-1/4 justify-start items-start py-14 mt-5 md:mt-5 flex-col gap-6">
+          <div class="flex flex-col gap-6 w-full">
             <UserCard :isMobile="false" />
+            <div v-if="showMetaCard"
+              class="flex w-full md:rounded-2xl px-5 py-5 flex-col justify-center gap-3 dark:shadow-none shadow-lg border-2 border-[var(--blog-border-c)] bg-[var(--vp-c-blog-bg)]/95 backdrop-blur-md">
+              <div class="flex items-center justify-between text-xs uppercase tracking-wider opacity-70">
+                <span>Metadata</span>
+                <span v-if="metaDateLabel" class="text-[11px] normal-case opacity-70">{{ metaDateLabel }}</span>
+              </div>
+              <div v-if="metaCategory" class="flex items-center gap-2 flex-wrap">
+                <span class="text-[11px] uppercase opacity-70">{{ getLocalizedString('category', lang) || 'Category' }}</span>
+                <span class="text-xs px-2.5 py-0.5 rounded-full border border-dashed border-[var(--blog-tag-text-2)] text-[var(--blog-tag-text-2)] bg-[var(--blog-tag-bg-2)]/80">
+                  {{ metaCategory }}
+                </span>
+              </div>
+              <div v-if="metaTags.length" class="flex items-center gap-2 flex-wrap">
+                <span class="text-[11px] uppercase opacity-70">{{ getLocalizedString('tags', lang) || 'Tags' }}</span>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span
+                    v-for="tag in metaTags"
+                    :key="tag"
+                    class="text-xs px-2.5 py-0.5 rounded-full border border-[var(--blog-tag-text-1)] text-[var(--blog-tag-text-1)] bg-[var(--blog-tag-bg-1)]/80">
+                    {{ tag }}
+                  </span>
+                </div>
+              </div>
+            </div>
             <div ref="asideSentinelEl" style="height:1px;"></div>
             <div ref="asideOutlineEl" v-show="!showFloatingOutline"
-              class="min-h-28 max-h-[calc(100vh-20rem)] overflow-auto opacity-85 backdrop-blur-md flex w-full md:rounded-xl px-5 py-5 flex-col justify-start dark:shadow-none shadow-md border-2 border-[var(--blog-border-c)] bg-[var(--vp-c-blog-bg)]">
+              class="min-h-28 max-h-[calc(100vh-20rem)] overflow-auto opacity-90 backdrop-blur-md flex w-full md:rounded-2xl px-5 py-5 flex-col justify-start dark:shadow-none shadow-lg border-2 border-[var(--blog-border-c)] bg-[var(--vp-c-blog-bg)]">
               <VPDocAsideOutline />
             </div>
           </div>
         </div>
 
-        <div class="flex md:w-3/4 md:py-20 py-0 justify-center items-center gap-5 flex-col w-full md:px-3 px-0">
+        <div class="flex md:w-3/4 md:py-20 py-0 justify-center items-center gap-6 flex-col w-full md:px-3 px-0">
           <Layout class="w-full">
             <template #doc-before>
-              <div class="text-3xl font-bold">{{ title }}</div>
+              <div class="text-3xl md:text-4xl font-bold tracking-tight">{{ title }}</div>
             </template>
             <template #doc-after>
               <Comment />
@@ -56,26 +80,23 @@
 
   <Layout v-else class="bg-no-repeat bg-center bg-fixed bg-cover"
     :style="bgImg ? { 'background-image': `url(${bgImg})` } : {}" :class="{ loadingStyle: isLoading }">
-    <template #doc-before>
-      <div class="text-3xl font-bold">{{ title }}</div>
-    </template>
-    <template #doc-after>
-      <Comment />
-    </template>
+      <template #doc-before>
+        <div class="text-3xl md:text-4xl font-bold tracking-tight">{{ title }}</div>
+      </template>
+      <template #doc-after>
+        <Comment />
+      </template>
   </Layout>
 </template>
 
 <script lang="ts" setup>
   import DefaultTheme from 'vitepress/theme';
-  import { useData, useRoute } from 'vitepress';
+  import { useData } from 'vitepress';
+  import { useRoute } from 'vitepress/client';
   import { onMounted, onUnmounted, ref, watch, computed } from 'vue';
-  import { useLoading } from '../composables/useLoading';
-  import { useTags } from '../composables/useTags';
-  import { useCategories } from '../composables/useCategories';
   import { getLocalizedString } from '../utils/constants';
   import Comment from '../components/Comment.vue';
   import UserCard from '../components/UserCard.vue';
-  import WidgetCard from '../components/WidgetCard.vue';
   import VPDocAsideOutline from 'vitepress/dist/client/theme-default/components/VPDocAsideOutline.vue';
 
   const { Layout } = DefaultTheme;
@@ -83,7 +104,7 @@
   // TODO 优化
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const { isLoading } = useLoading(() => import('../../tailwind'));
+  const isLoading = ref(false);
 
   const { frontmatter, isDark, theme, lang } = useData<Open17Config>();
   const blogConfig = theme.value.blog;
@@ -95,18 +116,32 @@
   const isPostPage = computed(() => route.path.startsWith('/posts/'));
   const switchPageStyle = ref<boolean>(true);
 
+  const metaCategory = computed(() => frontmatter.value?.category || '');
+  const metaTags = computed(() => (frontmatter.value?.tags || []) as string[]);
+  const metaDate = computed(() => frontmatter.value?.date || '');
+  const metaDateLabel = computed(() => {
+    if (!metaDate.value) return '';
+    const date = new Date(metaDate.value as any);
+    if (Number.isNaN(date.getTime())) return String(metaDate.value);
+    return date.toLocaleDateString(lang.value || 'en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    });
+  });
+  const showMetaCard = computed(() => metaCategory.value || metaTags.value.length || metaDate.value);
+
   const togglePostPage = () => {
     switchPageStyle.value = !switchPageStyle.value;
   };
 
-  // 分类/标签（预留）
-  // const { tagsMap, activeTag, getTagArray } = useTags();
-  // const { categoriesMap, activeCategory, getCategoryArray } = useCategories();
+
+  const handleTopCheck = () => {
+    isBlogTop.value = window.scrollY <= 50;
+  };
 
   onMounted(() => {
-    window.addEventListener('scroll', () => {
-      isBlogTop.value = window.scrollY <= 50;
-    });
+    window.addEventListener('scroll', handleTopCheck, { passive: true });
     updateBgImg();
   });
 
@@ -141,7 +176,7 @@
   const navHeight = ref(56);
 
   const asideSentinelEl = ref<HTMLElement | null>(null);
-  const asideOutlineEl = ref<HTMLElement | null>(null);
+  // const asideOutlineEl = ref<HTMLElement | null>(null);
 
   // 仅文章页且宽屏启用
   const floatingEnabled = computed(() => {
@@ -203,6 +238,7 @@
   );
 
   onUnmounted(() => {
+    window.removeEventListener('scroll', handleTopCheck as any);
     window.removeEventListener('scroll', updateFloating as any);
     window.removeEventListener('resize', handleScrollResize as any);
   });
@@ -281,9 +317,10 @@
   /* 文章页容器样式（桌面） */
   @media (min-width: 960px) {
     .post-page #VPContent {
-      border: 2px solid var(--blog-border-c);
+      border: none;
       border-radius: 0.75rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      background: var(--vp-c-bg);
     }
 
     .post-page .VPLocalNav { display: none !important; }
@@ -313,6 +350,10 @@
 </style>
 
 <style scoped>
+  .post-page {
+    background-color: var(--vp-c-bg-soft);
+  }
+
   .layout-toggle-btn {
     width: 2.5rem;
     height: 2.5rem;
@@ -329,8 +370,8 @@
   }
 
   .layout-toggle-btn:hover {
-    background-color: var(--vp-c-brand-2);
     transform: scale(1.05);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
   }
 
   .layout-toggle-btn:active {
@@ -350,7 +391,6 @@
     opacity: 0.92;
     backdrop-filter: blur(6px);
     border-radius: 0.75rem;
-    border: 2px solid var(--blog-border-c);
     background: var(--vp-c-blog-bg);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     padding: 1.25rem;

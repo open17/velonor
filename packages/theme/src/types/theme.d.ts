@@ -5,7 +5,7 @@ declare namespace Open17Theme {
   interface UserCardConfig {
     hidden?: boolean;
     name?: string;
-    avatar?: CustomImage;
+    avatar?: Open17Image;
     describe?: string;
   }
 
@@ -27,6 +27,7 @@ declare namespace Open17Theme {
     user?: Open17Theme.UserCardConfig; // 用户卡片配置
     // 每页文章数量（优先级高于 home.postsPerPage）
     pageSize?: number;
+    pageGroupSize?: number;
   }
 
   // 首页配置

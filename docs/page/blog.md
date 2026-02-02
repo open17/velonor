@@ -4,12 +4,12 @@ lastUpdated: false
 bgImage:
   light: "/bg.jpg"
   dark: "/bg2_dark.jpg"
-widgets:
-  - name: "音乐播放器"
-    link: "/posts/2024-10-17-music-player"
-    html: "<div id='custom1'></div>"
+# widgets:
+#   - name: "音乐播放器"
+#     link: "/posts/2024-10-17-music-player"
+#     html: "<div id='custom1'></div>"
 ---
-
+<!-- 
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue';
 onMounted(async () => {
@@ -38,4 +38,4 @@ onMounted(async () => {
         },]
     });
 });
-</script>
+</script> -->

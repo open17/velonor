@@ -1,9 +1,15 @@
 {
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
+    "@unocss/vite": "^66.0.0",
+    "unocss": "^66.0.0",
     "vitepress": "^1.3.4"
   },
   "scripts": {
+    "predev": "npm --prefix packages/engine run build",
     "dev": "vitepress dev docs --port 8090",
     "build": "vitepress build docs",
     "preview": "vitepress preview docs"
@@ -16,7 +22,8 @@
     "markdown-it-mathjax3": "^4.3.2",
     "vite": "^5.2.14",
     "vitepress-sidebar": "^1.22.0",
-    "vitepress-theme-open17": "^1.3.6",
+    "vitepress-theme-open17": "^1.4.0",
+    "vitepress-velonor": "^0.1.0",
     "vue": "^3.4.21"
   }
 }

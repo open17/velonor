@@ -5,6 +5,7 @@ import MainLayout from './layouts/Layout.vue';
 import Blog from './components/Blog.vue';
 import Archive from './components/Archive.vue';
 import Tags from './components/Tags.vue';
+import Categories from './components/Categories.vue';
 
 import './style.css';
 
@@ -16,5 +17,6 @@ export default {
     app.component('blog', Blog);
     app.component('archive', Archive);
     app.component('tags', Tags);
+    app.component('categories', Categories);
   },
 };

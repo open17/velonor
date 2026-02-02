@@ -1,6 +1,8 @@
 import type { ThemeConfig } from "vitepress-theme-open17/config";
 import { genFeed } from "vitepress-theme-open17/genFeed";
 import { defineConfigWithTheme } from "vitepress";
+import UnoCSS from "unocss/vite";
+import { fileURLToPath, URL } from "node:url";
 
 import { generateSidebar } from "vitepress-sidebar";
 
@@ -15,14 +17,37 @@ const vitepressSidebarOptions = [
     useFolderLinkFromIndexFile: true,
     rootGroupCollapsed: true,
   },
+  {
+    documentRootPath: "docs",
+    scanStartPath: "posts/engine",
+    resolvePath: "/posts/engine/",
+    collapsed: true,
+    useTitleFromFileHeading: true,
+    useFolderTitleFromIndexFile: true,
+    useFolderLinkFromIndexFile: true,
+    rootGroupCollapsed: true,
+  },
 ];
 
 export default defineConfigWithTheme<ThemeConfig>({
-  title: "VitePress Open17",
+  title: "Velonor",
   lang: "zh-CN",
-  description: "A beautiful & simple blog theme of vitepress",
+  description: "为 VitePress 注入全新的博客体验 | 简洁 · 优雅 · 强大",
   markdown: {
     math: true,
+  },
+  vite: {
+    plugins: [UnoCSS()],
+    // resolve: {
+    //   alias: {
+    //     "vitepress-theme-open17": fileURLToPath(
+    //       new URL("../../packages/theme/src/index.ts", import.meta.url)
+    //     ),
+    //     "vitepress-theme-open17/genFeed": fileURLToPath(
+    //       new URL("../../packages/theme/src/genFeed.mjs", import.meta.url)
+    //     ),
+    //   },
+    // },
   },
   sitemap: {
     hostname: "https://vitepress.open17.vip",
@@ -42,7 +67,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       })();
     `,
     ],
-    ["meta", { name: "keywords", content: "vitepress, theme, blog, open17" }],
+    ["meta", { name: "keywords", content: "vitepress, theme, blog, open17, velonor, 博客, 主题" }],
   ],
   themeConfig: {
     sidebar: generateSidebar(vitepressSidebarOptions),
@@ -69,9 +94,9 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
     blog: {
       tagPageLink: "/page/tags",
-      bgImage: { dark: "/bg_dark.jpg" },
+      bgImage: { dark: "/bg_dark.jpg", light: "/bg.jpg" },
       direct: "lft",
-      pageSize: 3, // align with new theme option, fallback still respects home.postsPerPage
+      pageSize: 3,
       user: {
         name: "Open17",
         avatar: "/ava.jpg",
@@ -102,6 +127,7 @@ export default defineConfigWithTheme<ThemeConfig>({
           { text: "Blog", link: "/page/blog" },
           { text: "Tags", link: "/page/tags" },
           { text: "Archive", link: "/page/archive" },
+          { text: "Categories", link: "/page/categories" },
         ],
       },
     ],

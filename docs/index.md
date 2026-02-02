@@ -1,4 +1,4 @@
----
+﻿---
 layout: home
 lastUpdated: false
 bgImage: 
@@ -6,9 +6,9 @@ bgImage:
   dark: '/bg_dark.jpg'
 
 hero:
-  name: "Vitepress Open17"
-  text: "简单美观的博客主题"
-  tagline: 将 Markdown 变成美观的博客，只需几分钟
+  name: "Velonor"
+  text: "让你的博客焕然一新"
+  tagline: "简洁 · 优雅 · 强大"
   image:
     dark: "/banner.png"
     light: "/banner.png"
@@ -18,36 +18,29 @@ hero:
       text: 主题文档
       link: /guide/0-intro/
     - theme: brand
+      text: 引擎文档
+      link: /posts/engine/2026-02-02-engine-overview
+    - theme: alt
       text: Live Demo
       link: /page/blog
-    - theme: alt
-      text: Vitepress文档
-      link: https://vitepress.dev/
 
 features:
   - title: 快速上手
-    icon: 🛠️
-    details: 兼容vitepress默认配置与功能,无需额外修改,快速迁移你的vitpress站点
-    link: "/guide/0-intro/0-start.html"
-    linkText: "点击跳转"
-  - title: 博客能力增强
-    icon: 📑
-    details: 基于vitpress,同时支持常见的博客功能与需求
-    link: "/guide/0-intro/1-use.html"
-    linkText: "点击跳转"
-  - title: 多样化配置
-    icon: 🌼
-    details: 自定义背景,主题色,RSS,自定义组件...
-    link: "/guide/1-config/0-home.html"
-    linkText: "点击跳转"
+    icon: ⚡
+    details: 一键安装, 即插即用，提供简洁美观的博客主题
+    link: "/guide/0-intro/0-start"
+    linkText: "快速开始"
+  - title: 博客增强
+    icon: 🎨
+    details: 分页、归档、标签、分类、RSS 等,你需要的博客功能全都有
+    link: "/guide/0-intro/1-use"
+    linkText: "主题能力"
+  - title: 自定义主题
+    icon: 🧩
+    details: 基于Velonor博客微引擎, 快速开发属于你自己的博客主题
+    link: "posts/engine/1-engine-overview"
+    linkText: "使用详情"
 ---
 
-<br>
-<br>
-<br>
 
-<style>
-.VPHero .image-container{
-  transform: scale(0.92);
-}
-</style>
+

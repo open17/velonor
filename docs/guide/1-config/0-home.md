@@ -57,16 +57,12 @@ export default defineConfigWithTheme({
 ## 标签组件栏
 
 - 首页标签栏显示数量由 home.maxTagsDisplayed 控制。
-- 在侧边栏显示“更多”图标时，需设置 blog.tagPageLink。
 
 ```js
 themeConfig:{
   home:{
     maxTagsDisplayed: 5,               // 首页标签栏显示的最大标签数量
   },
-  blog: {
-    tagPageLink: '/page/tags'          // “更多标签”跳转链接（可选）
-  }
 }
 ```
 

@@ -1,5 +1,5 @@
 import { ref, watch, nextTick } from 'vue';
-import { useRoute } from 'vitepress';
+import { useRoute } from 'vitepress/client';
 
 export function useRefreshOnRouteChange() {
   const route = useRoute();
