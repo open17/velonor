@@ -13,7 +13,7 @@ const program = new Command()
 program
   .name('create-open17-blog')
   .description('Create a VitePress blog preconfigured with vitepress-theme-open17')
-  .version('1.0.0')
+  .version('1.1.1')
   .argument('[project-name]', 'Folder to create the project in')
   .option('-f, --force', 'Overwrite target directory if it exists', false)
   .action(async (projectName, options) => {
@@ -106,7 +106,9 @@ async function scaffold(dir: string, name: string) {
       vue: '^3.4.21',
       '@giscus/vue': '^3.0.0',
       'vitepress-sidebar': '^1.22.0',
-      'vitepress-theme-open17': '^1.3.5',
+      'vitepress-theme-open17': '^1.4.0',
+      '@unocss/vite': '^66.0.0',
+      'unocss': '^66.0.0'
     },
     devDependencies: {}
   }
@@ -117,12 +119,16 @@ async function scaffold(dir: string, name: string) {
   await fs.writeFile(path.join(vpDir, 'index.md'), postIndexTemplate())
   await fs.ensureDir(path.join(vpDir, 'posts'))
   await fs.writeFile(path.join(vpDir, 'posts', `${formatDate(new Date())}-hello-open17.md`), samplePost())
+  await fs.writeFile(path.join(vpDir, 'posts/foo', `${formatDate(new Date())}-second-post.md`), samplePostAlt())
   await fs.ensureDir(path.join(vpDir, 'page'))
   await fs.writeFile(path.join(vpDir, 'page', 'tags.md'), tagsPageTemplate())
+  await fs.writeFile(path.join(vpDir, 'page', 'categories.md'), categoriesPageTemplate())
   await fs.writeFile(path.join(vpDir, 'page', 'archive.md'), archivePageTemplate())
   await fs.writeFile(path.join(vpThemeDir, 'config.ts'), configTsTemplate())
   await fs.writeFile(path.join(vpThemeIndexDir, 'index.ts'), themeIndexTemplate())
   await fs.ensureDir(path.join(vpDir, 'public'))
+  await fs.writeFile(path.join(dir, 'uno.config.ts'), unoConfigTemplate())
+  await fs.writeFile(path.join(dir, 'README.md'), projectReadmeTemplate(name))
 }
 
 function detectPackageManager() {
@@ -157,6 +163,8 @@ title: Hello,World!
 date: 2025-08-11
 tags:
   - Hello World
+categories:
+  - Demo
 
 ---
 
@@ -187,24 +195,52 @@ Open17 是一款专为 VitePress 设计的现代化博客主题，在保持原�
 `
 }
 
+function samplePostAlt() {
+  return `---
+title: Another Post
+date: 2025-08-12
+tags:
+  - Tips
+categories:
+  - Notes
+
+---
+
+This is a second sample post to demonstrate multiple categories.
+
+---
+
+## Quick Tips
+
+- Keep your posts inside \`/docs/posts\`
+- Use \`tags\`  in frontmatter
+- Try the archive and categories pages
+`
+}
+
 function configTsTemplate() {
   return `import { defineConfigWithTheme } from 'vitepress'
 import type { ThemeConfig } from 'vitepress-theme-open17/config'
+import UnoCSS from 'unocss/vite'
 
 export default defineConfigWithTheme<ThemeConfig>({
   title: 'Blog Demo',
   description: 'A VitePress Site',
+  vite: {
+    plugins: [UnoCSS()],
+  },
   themeConfig: {
     search: { provider: 'local' },
     blog: {
-      direct: 'rgt',
+      direct: 'lft',
+      tagPageLink: '/page/tags',
+      categoryPageLink: '/page/categories',
       user: {
         name: 'Open17',
         avatar: 'https://vitepress.open17.vip/ava.jpg',
         describe: 'Made with ❤️ by open17',
       },
-      tagPageLink: '/page/tags',
-      bgImage: { dark: "https://vitepress.open17.vip/bg_dark.jpg" },
+      bgImage: { dark: "https://vitepress.open17.vip/bg_dark.jpg", light: "https://vitepress.open17.vip/bg.jpg" },
     },
     nav: [
       { text: "Home", link: "/" },
@@ -212,7 +248,8 @@ export default defineConfigWithTheme<ThemeConfig>({
         text: "Others",
         items: [
           { text: "Tags", link: "/page/tags" },
-          { text: "Archive", link: " /page/archive" },
+          { text: "Categories", link: "/page/categories" },
+          { text: "Archive", link: "/page/archive" },
         ],
       },
     ],
@@ -227,6 +264,8 @@ export default defineConfigWithTheme<ThemeConfig>({
 
 function themeIndexTemplate() {
   return `import Theme from 'vitepress-theme-open17'
+import 'virtual:uno.css'
+
 export default Theme
 `
 }
@@ -234,6 +273,17 @@ export default Theme
 function tagsPageTemplate() {
   return `---
 layout: tags
+lastUpdated: false
+bgImage:
+  light: "https://vitepress.open17.vip/bg.jpg"
+  dark: "https://vitepress.open17.vip/bg2_dark.jpg"
+---
+`
+}
+
+function categoriesPageTemplate() {
+  return `---
+layout: categories
 lastUpdated: false
 bgImage:
   light: "https://vitepress.open17.vip/bg.jpg"
@@ -250,5 +300,32 @@ bgImage:
   light: "https://vitepress.open17.vip/bg.jpg"
   dark: "https://vitepress.open17.vip/bg2_dark.jpg"
 ---
+`
+}
+
+function unoConfigTemplate() {
+  return `import { defineConfig, presetWind3 } from 'unocss'
+
+export default defineConfig({
+  presets: [presetWind3()],
+})
+`
+}
+
+function projectReadmeTemplate(name: string) {
+  return `# ${name}
+
+Quick start:
+
+\`\`\`bash
+npm i
+npm run dev
+\`\`\`
+
+Build:
+
+\`\`\`bash
+npm run build
+\`\`\`
 `
 }

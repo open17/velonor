@@ -1,6 +1,6 @@
 {
   "name": "create-open17-blog",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "description": "CLI tool for quickly setting up vitepress-theme-open17 blog",
   "type": "module",
   "main": "./dist/index.js",
@@ -37,8 +37,8 @@
     "tsup": "^8.0.1"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --target node16 --minify",
-    "dev": "tsup src/index.ts --format esm --target node16 --watch",
+  "build": "tsup src/index.ts --format esm --target node16 --minify",
+  "dev": "tsup src/index.ts --format esm --target node16 --watch",
     "prepublishOnly": "npm run build"
   },
   "engines": {
