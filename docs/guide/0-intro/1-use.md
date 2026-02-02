@@ -1,119 +1,105 @@
 # 博客使用
 
-在初始化完环境之后,我们便可以开始我们的博客写作啦!
-
 ## :bookmark_tabs: 创建博客文章
 
-在vitepress的[站点目录](https://vitepress.dev/zh/guide/getting-started#file-structure)文件夹下建立一个名为`posts`的文件夹
+在 `docs/posts` 目录下创建 Markdown 文件，都会被视为博客文章。
 
-在posts文件夹下创建的所有markdown文件将被视为博客文章
-
-例如你的文件目录结构可能如下:
+目录示例：
 
 ```
-.
-├─ docs
-│  ├─ .vitepress
-│  │  └─ config.js
-│  ├─ posts
-│  │    ├─ my-blog-0.md
-│  │    └─ my-blog-1.md
-│  ├─ markdown-examples.md
-│  └─ index.md
-└─ package.json
+docs
+  .vitepress
+    config.ts
+  posts
+    my-blog-0.md
+    my-blog-1.md
+  index.md
 ```
 
-其中`my-blog-0.md`和`my-blog-1.md`便会被主题自动渲染为博客文章
+## :book: 文章 Frontmatter
 
-## :book: 配置博客文章
+常用字段：
 
-一些和博客文章相关的配置
+- `title` 文章标题
+- `date` 发布时间（默认 1900-01-01）
+- `tags` 标签（数组）
+- `categories` 仅作展示（可选，不参与分类统计）
+- `pin` 是否置顶（默认 false）
+- `desc` 摘要（为空时取正文分隔前内容）
+- `cover` 封面图
 
-- `title` 文章的标题,会自动渲染在文章中
-- `date` 文章的创建时间,默认为1900-01-01
-- `tags` 文章的标签,支持多组标签
-- `pin` 布尔值,是否置顶文章,默认为`false`
-- `desc` 简介,当摘要为空的时候会显示desc的内容
-- `cover`: 卡片封面图片,会展示在博客列表卡片顶部,可选
-
-摘要即为正文部分第一个`---`分割线前的所有内容
-
-提示：博客页支持“标签”和“分类”筛选，并与 URL 同步：
-- 标签 query 使用 tag，如 ?tag=xxx
-- 分类 query 使用 category，如 ?category=xxx
-- 分页 query 使用 page，如 ?page=2
-切换标签或分类时会自动重置到第 1 页。
-
-
-下面是一个包含完整博客配置的文章示例:
+示例：
 
 ```md
 ---
 title: 我的第一篇博客
 date: 2024-03-23
 tags:
-    - hello world
-    - 标签1
-
+  - hello
+  - vitepress
+categories:
+  - Notes
 pin: true
-desc: xxxx
-img: xxx
+desc: 一段简短摘要
+cover: /cover.png
 ---
-
-我是文章的摘要
-
----
-
-我是一段废话
-
-## 标题A
-
-AAAAAAAAAAAAAAAAAAAAAA
-
-## 标题B
-
-BBBBBBBBBBBBBBB
-
 ```
 
+## :house: 博客首页
 
-## :house: 搭建博客主页
+任意页面设置 `layout: blog` 就是博客首页：
 
-博客主页会自动的展示所有的博客文章,并且会自动的根据文章的创建时间进行排序
-
-同时还会显示头像昵称签名等其他内容,在<Badge type="tip" text="版本1.1.0" />及以后还可以自己添加相关的主页小组件
-
-例如: [博客主页示例](/page/blog)
-
-对于任意一个vitepress的markdown页面,使用layout配置便可转为博客主页:
 ```md
 ---
 layout: blog
 ---
 ```
-也就是说,你可以自由的选择任意的一个甚至多个页面作为博客主页,不过更推荐将`index.md`作为博客主页,以符合博客站点的习惯
 
-如果你还不清楚文件路径和网页路由的对应关系,可以参考vitepress的[相关文档](https://vitepress.dev/zh/guide/routing#file-based-routing)
+推荐将 `docs/index.md` 作为博客首页。
 
-现在你应该能在对应的博客主页中看到创建的文章了
+## :bookmark: 标签 / 分类 / 归档页
 
-
-## :bookmark: 创建标签页与归档页
-
-与博客主页同理
-
-:::code-group
-```md [标签页]
----
+```md
+--- 
 layout: tags
 ---
 ```
-```md [归档页]
+
+```md
+---
+layout: categories
+---
+```
+
+```md
 ---
 layout: archive
 ---
 ```
-:::
 
+## :file_folder: 分类规则（重要）
 
+分类**不依赖** `frontmatter.categories`。  
+分类取决于文章在 `docs/posts` 下的**子文件夹名**：
 
+```
+docs/posts
+  notes/        <- 分类: notes
+    a.md
+  diary/        <- 分类: diary
+    b.md
+  c.md          <- 根目录文章，会归入 “其他/uncategorized”
+```
+
+因此：  
+- 想让文章进入某个分类，请把文件放进对应子文件夹  
+- 直接放在 `docs/posts` 根目录的文章会归入默认分类
+
+## :sparkles: UnoCSS 必须启用
+
+主题样式基于 UnoCSS，请确保：
+
+1) 在主题入口引入 `virtual:uno.css`  
+2) 在 `vite` 配置中启用 `UnoCSS()` 插件
+
+详细配置见“快速开始”。
