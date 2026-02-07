@@ -38,6 +38,9 @@ export default defineConfigWithTheme<ThemeConfig>({
   },
   vite: {
     plugins: [UnoCSS()],
+    ssr: {
+      noExternal: ['vitepress-velonor', 'vitepress-theme-open17'],
+    },
     // resolve: {
     //   alias: {
     //     "vitepress-theme-open17": fileURLToPath(

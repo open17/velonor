@@ -229,6 +229,9 @@ export default defineConfigWithTheme<ThemeConfig>({
   description: 'A VitePress Site',
   vite: {
     plugins: [UnoCSS()],
+    ssr: {
+      noExternal: ['vitepress-velonor', 'vitepress-theme-open17'],
+    },
   },
   themeConfig: {
     search: { provider: 'local' },

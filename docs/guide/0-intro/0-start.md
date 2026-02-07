@@ -9,11 +9,6 @@
 npm create open17-blog my-blog
 ```
 
-## :star: GitHub 模板
-
-使用 GitHub Template 一键初始化：
-https://github.com/open17/vitepress-theme-open17/generate
-
 ## :hammer_and_wrench: 手动开始
 
 先初始化 VitePress 项目，然后安装主题：
@@ -50,6 +45,9 @@ import UnoCSS from 'unocss/vite'
 export default defineConfigWithTheme<ThemeConfig>({
   vite: {
     plugins: [UnoCSS()],
+    ssr: {
+      noExternal: ['vitepress-velonor', 'vitepress-theme-open17'],
+    },
   },
   themeConfig: {
     // 你的主题配置
