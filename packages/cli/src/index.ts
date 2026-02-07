@@ -118,8 +118,9 @@ async function scaffold(dir: string, name: string) {
 
   await fs.writeFile(path.join(vpDir, 'index.md'), postIndexTemplate())
   await fs.ensureDir(path.join(vpDir, 'posts'))
+  await fs.ensureDir(path.join(vpDir, 'posts', 'foo'))
   await fs.writeFile(path.join(vpDir, 'posts', `${formatDate(new Date())}-hello-open17.md`), samplePost())
-  await fs.writeFile(path.join(vpDir, 'posts/foo', `${formatDate(new Date())}-second-post.md`), samplePostAlt())
+  await fs.writeFile(path.join(vpDir, 'posts', 'foo', `${formatDate(new Date())}-second-post.md`), samplePostAlt())
   await fs.ensureDir(path.join(vpDir, 'page'))
   await fs.writeFile(path.join(vpDir, 'page', 'tags.md'), tagsPageTemplate())
   await fs.writeFile(path.join(vpDir, 'page', 'categories.md'), categoriesPageTemplate())
