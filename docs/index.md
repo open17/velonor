@@ -15,13 +15,13 @@ hero:
     alt: open17
   actions:
     - theme: brand
-      text: 主题文档
+      text: 快速开始
       link: /guide/0-intro/
     - theme: brand
-      text: 引擎文档
-      link: /posts/engine/2026-02-02-engine-overview
+      text: 引擎参考
+      link: /posts/engine/1-engine-overview
     - theme: alt
-      text: Live Demo
+      text: 主题展示
       link: /page/blog
 
 features:

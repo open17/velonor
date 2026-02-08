@@ -23,8 +23,8 @@
     "markdown-it-mathjax3": "^4.3.2",
     "vite": "^5.2.14",
     "vitepress-sidebar": "^1.22.0",
-    "vitepress-theme-open17": "^1.4.0",
-    "vitepress-velonor": "^0.1.0",
+    "vitepress-theme-open17": "workspace:*",
+    "vitepress-velonor": "workspace:*",
     "vue": "^3.4.21"
   }
 }

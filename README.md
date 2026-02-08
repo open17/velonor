@@ -118,19 +118,9 @@ npm create open17-blog my-blog
 <div align="center">
 
 **如果这个主题对你有帮助，请给我们一个 ⭐**
-
 **你的支持是我们持续更新的最佳动力！**
 
-[🐛反馈问题](https://github.com/open17/vitepress-theme-open17/issues)
-[💡功能建议](https://github.com/open17/vitepress-theme-open17/discussions)
-
 </div>
 
 
----
 
-<div align="center">
-
-**Made with ❤️ by [open17](https://github.com/open17)**
-
-</div>

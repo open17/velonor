@@ -41,16 +41,6 @@ export default defineConfigWithTheme<ThemeConfig>({
     ssr: {
       noExternal: ['vitepress-velonor', 'vitepress-theme-open17'],
     },
-    // resolve: {
-    //   alias: {
-    //     "vitepress-theme-open17": fileURLToPath(
-    //       new URL("../../packages/theme/src/index.ts", import.meta.url)
-    //     ),
-    //     "vitepress-theme-open17/genFeed": fileURLToPath(
-    //       new URL("../../packages/theme/src/genFeed.mjs", import.meta.url)
-    //     ),
-    //   },
-    // },
   },
   sitemap: {
     hostname: "https://vitepress.open17.vip",
