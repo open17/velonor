@@ -6,14 +6,14 @@ tags:
   - 快速开始
 ---
 
-`vitepress-velonor` 是一个面向 VitePress 的**博客微引擎**，提供可复用的逻辑与数据能力，帮助你快速开发一个属于你自己的博客主题。
+`@velonor/engine` 是一个面向 VitePress 的**博客微引擎**，提供可复用的逻辑与数据能力，帮助你快速开发一个属于你自己的博客主题。
 
 ---
 
 ## 1. 安装
 
 ```bash
-npm i vitepress-velonor
+npm i @velonor/engine
 ```
 
 ---
@@ -24,7 +24,7 @@ npm i vitepress-velonor
 
 ```ts
 // packages/theme/src/posts.data.js
-import { createPostsLoader } from 'vitepress-velonor/loader';
+import { createPostsLoader } from '@velonor/engine/loader';
 export default createPostsLoader('posts/**/*.md');
 ```
 
@@ -32,25 +32,25 @@ export default createPostsLoader('posts/**/*.md');
 
 ```ts
 // packages/theme/src/tags.data.ts
-import { createTagsLoader } from 'vitepress-velonor/loader';
+import { createTagsLoader } from '@velonor/engine/loader';
 export default createTagsLoader('posts/**/*.md');
 ```
 
 ```ts
 // packages/theme/src/categories.data.ts
-import { createCategoriesLoader } from 'vitepress-velonor/loader';
+import { createCategoriesLoader } from '@velonor/engine/loader';
 export default createCategoriesLoader('posts/**/*.md');
 ```
 
 ```ts
 // packages/theme/src/archive.data.ts
-import { createArchiveLoader } from 'vitepress-velonor/loader';
+import { createArchiveLoader } from '@velonor/engine/loader';
 export default createArchiveLoader('posts/**/*.md');
 ```
 
 ```ts
 // packages/theme/src/page-links.data.ts
-import { createPageLinksLoader } from 'vitepress-velonor/loader';
+import { createPageLinksLoader } from '@velonor/engine/loader';
 export default createPageLinksLoader(['**/*.md']);
 ```
 
@@ -61,7 +61,7 @@ export default createPageLinksLoader(['**/*.md']);
 ### 分页
 
 ```ts
-import { usePagination } from 'vitepress-velonor/client';
+import { usePagination } from '@velonor/engine/client';
 import { data as posts } from '../posts.data.js';
 
 const { currentPage, paginatedItems } = usePagination(posts, { pageSize: 5 });
@@ -70,7 +70,7 @@ const { currentPage, paginatedItems } = usePagination(posts, { pageSize: 5 });
 ### 标签/分类
 
 ```ts
-import { createTagsStore, createCategoriesStore } from 'vitepress-velonor/client';
+import { createTagsStore, createCategoriesStore } from '@velonor/engine/client';
 import { data as posts } from '../posts.data.js';
 
 const useTags = createTagsStore(posts);
@@ -92,3 +92,4 @@ layout: blog | tags | categories | archive
 ---
 
 完成。你可以直接写主题组件使用这些 data 与 composable。  
+

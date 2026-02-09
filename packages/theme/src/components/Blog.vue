@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { useData, withBase } from 'vitepress';
 import { computed, watch } from 'vue';
 import ThemeLayout from './ThemeLayout.vue';
@@ -8,7 +8,7 @@ import {
   getLocalizedString,
   usePagination,
   formatDate,
-} from 'vitepress-velonor/client';
+} from '@velonor/engine/client';
 import { useTagFilter } from '../composables/useTagFilter';
 import { useCategories } from '../composables/useCategories';
 
@@ -229,3 +229,4 @@ const jumpToPage = () => {
     </div>
   </ThemeLayout>
 </template>
+

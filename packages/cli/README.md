@@ -1,30 +1,30 @@
-# create-open17-blog
+# @velonor/create-blog
 
-A CLI tool for quickly setting up VitePress blog with `vitepress-theme-open17`
+A CLI tool for quickly setting up a VitePress blog with `@velonor/theme`
 
 ## Usage
 
 ```bash
-npm create open17-blog my-blog
+npm create @velonor/blog my-blog
 # or
-yarn create open17-blog my-blog
+yarn create @velonor/blog my-blog
 # or  
-pnpm create open17-blog my-blog
+pnpm create @velonor/blog my-blog
 # or
-bun create open17-blog my-blog
+bun create @velonor/blog my-blog
 ```
 
 You can also run it without arguments to create a blog in current directory:
 
 ```bash
-npm create open17-blog
+npm create @velonor/blog
 ```
 
 ## Features
 
 - 🚀 Quick scaffolding with minimal setup
 - 📁 Generates proper project structure
-- 🎨 Preconfigured with open17 theme defaults  
+- 🎨 Preconfigured with Velonor theme defaults  
 - 📝 Sample blog post included
 - ⚙️ Type-safe configuration
 - 🔧 Works with npm/yarn/pnpm/bun
@@ -39,7 +39,7 @@ my-blog/
 │   │   └── theme/
 │   │       └── index.ts       # Theme entry
 │   ├── posts/
-│   │   └── 2024-xx-xx-hello-open17.md  # Sample post
+│   │   └── 2024-xx-xx-hello-velonor.md  # Sample post
 │   ├── index.md               # Homepage with <blog /> component
 │   └── public/                # Static assets
 ├── package.json
@@ -63,3 +63,4 @@ Your blog will be available at http://localhost:8090
 ## License
 
 Apache-2.0
+

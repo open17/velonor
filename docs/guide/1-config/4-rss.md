@@ -6,7 +6,7 @@
 
 ```ts
 // .vitepress/config.ts
-import { genFeed } from 'vitepress-theme-open17/genFeed'
+import { genFeed } from '@velonor/theme/genFeed'
 import { defineConfigWithTheme } from 'vitepress'
 
 export default defineConfigWithTheme({

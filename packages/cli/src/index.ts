@@ -6,14 +6,15 @@ import fs from 'fs-extra'
 import chalk from 'chalk'
 import ora from 'ora'
 // import { fileURLToPath } from 'node:url'
+// @ts-ignore
 import validateProjectName from 'validate-npm-package-name'
 
 const program = new Command()
 
 program
-  .name('create-open17-blog')
-  .description('Create a VitePress blog preconfigured with vitepress-theme-open17')
-  .version('1.1.1')
+  .name('create-blog')
+  .description('Create a VitePress blog preconfigured with @velonor/theme')
+  .version('1.0.0')
   .argument('[project-name]', 'Folder to create the project in')
   .option('-f, --force', 'Overwrite target directory if it exists', false)
   .action(async (projectName, options) => {
@@ -28,7 +29,7 @@ program
           name: 'name',
           type: 'input',
           message: 'Project name:',
-          default: 'my-open17-blog',
+          default: 'my-velonor-blog',
         }])
         name = ans.name
       }
@@ -36,8 +37,8 @@ program
       const valid = validateProjectName(name)
       if (!valid.validForNewPackages) {
         console.error(chalk.red('Invalid project name: ' + name))
-        valid.errors?.forEach(e => console.error(chalk.red('  ' + e)))
-        valid.warnings?.forEach(w => console.error(chalk.yellow('  ' + w)))
+        valid.errors?.forEach((e: string) => console.error(chalk.red('  ' + e)))
+        valid.warnings?.forEach((w: string) => console.error(chalk.yellow('  ' + w)))
         process.exit(1)
       }
 
@@ -106,7 +107,7 @@ async function scaffold(dir: string, name: string) {
       vue: '^3.4.21',
       '@giscus/vue': '^3.0.0',
       'vitepress-sidebar': '^1.22.0',
-      'vitepress-theme-open17': '^1.4.0',
+      '@velonor/theme': '^1.0.0',
       '@unocss/vite': '^66.0.0',
       'unocss': '^66.0.0'
     },
@@ -119,7 +120,7 @@ async function scaffold(dir: string, name: string) {
   await fs.writeFile(path.join(vpDir, 'index.md'), postIndexTemplate())
   await fs.ensureDir(path.join(vpDir, 'posts'))
   await fs.ensureDir(path.join(vpDir, 'posts', 'foo'))
-  await fs.writeFile(path.join(vpDir, 'posts', `${formatDate(new Date())}-hello-open17.md`), samplePost())
+  await fs.writeFile(path.join(vpDir, 'posts', `${formatDate(new Date())}-hello-velonor.md`), samplePost())
   await fs.writeFile(path.join(vpDir, 'posts', 'foo', `${formatDate(new Date())}-second-post.md`), samplePostAlt())
   await fs.ensureDir(path.join(vpDir, 'page'))
   await fs.writeFile(path.join(vpDir, 'page', 'tags.md'), tagsPageTemplate())
@@ -170,15 +171,15 @@ categories:
 ---
 
 
-这是你的第一篇文章，来自 vitepress-theme-open17 CLI 初始化。
+这是你的第一篇文章，来自 Velonor CLI 初始化。
 
 ---
 
-:::tip ✨ 为什么选择 Open17？
+:::tip ✨ 为什么选择 Velonor？
 
 **无缝沿用 VitePress 默认配置，轻松构建你的个性化博客**
 
-Open17 是一款专为 VitePress 设计的现代化博客主题，在保持原有强大功能的基础上，为你带来全新的博客体验。
+Velonor 是一款专为 VitePress 设计的现代化博客主题，在保持原有强大功能的基础上，为你带来全新的博客体验。
 :::
 
 ## 使用说明
@@ -221,7 +222,7 @@ This is a second sample post to demonstrate multiple categories.
 
 function configTsTemplate() {
   return `import { defineConfigWithTheme } from 'vitepress'
-import type { ThemeConfig } from 'vitepress-theme-open17/config'
+import type { ThemeConfig } from '@velonor/theme/config'
 import UnoCSS from 'unocss/vite'
 
 export default defineConfigWithTheme<ThemeConfig>({
@@ -230,7 +231,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   vite: {
     plugins: [UnoCSS()],
     ssr: {
-      noExternal: ['vitepress-velonor', 'vitepress-theme-open17'],
+      noExternal: ['@velonor/engine', '@velonor/theme'],
     },
   },
   themeConfig: {
@@ -240,9 +241,9 @@ export default defineConfigWithTheme<ThemeConfig>({
       tagPageLink: '/page/tags',
       categoryPageLink: '/page/categories',
       user: {
-        name: 'Open17',
+        name: 'Velonor',
         avatar: 'https://vitepress.open17.vip/ava.jpg',
-        describe: 'Made with ❤️ by open17',
+        describe: 'Made with ❤️ by velonor',
       },
       bgImage: { dark: "https://vitepress.open17.vip/bg_dark.jpg", light: "https://vitepress.open17.vip/bg.jpg" },
     },
@@ -267,7 +268,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 }
 
 function themeIndexTemplate() {
-  return `import Theme from 'vitepress-theme-open17'
+  return `import Theme from '@velonor/theme'
 import 'virtual:uno.css'
 
 export default Theme
@@ -333,3 +334,6 @@ npm run build
 \`\`\`
 `
 }
+
+
+

@@ -78,13 +78,14 @@
   </ThemeLayout>
 </template>
 
+
 <script setup lang="ts">
-import { data as archiveIndex } from '../archive.data';
 import { withBase, useData } from 'vitepress';
 import ThemeLayout from './ThemeLayout.vue';
-import { type BlogPost, getLocalizedString } from 'vitepress-velonor';
+import { type BlogPost, getLocalizedString } from '@velonor/engine';
 import { computed } from 'vue';
 import { data as pageLinks } from '../page-links.data';
+import { data as archiveIndex } from '../archive.data';
 
 interface MonthGroup {
   month: number;

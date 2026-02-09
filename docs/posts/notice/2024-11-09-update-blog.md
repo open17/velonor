@@ -30,7 +30,7 @@ declare type Open17Image = string | { light?: string; dark?: string };
 :::code-group
 
 ```ts [新配置]
-import type { ThemeConfig } from "vitepress-theme-open17/config";
+import type { ThemeConfig } from "@velonor/theme/config";
 import { defineConfigWithTheme } from "vitepress";
 export default defineConfigWithTheme<ThemeConfig>({
   // ...
@@ -38,8 +38,8 @@ export default defineConfigWithTheme<ThemeConfig>({
 ```
 
 ```ts [对比原先]
-import type { ThemeConfig } from "vitepress-theme-open17/config"; // [!code ++]
-import baseConfig from 'vitepress-theme-open17/config' // [!code --]
+import type { ThemeConfig } from "@velonor/theme/config"; // [!code ++]
+import baseConfig from '@velonor/theme/config' // [!code --]
 import { defineConfigWithTheme } from "vitepress"; // [!code ++]
 import { defineConfig } from 'vitepress' // [!code --]
 export default
@@ -77,7 +77,7 @@ themeConfig: {
     },  // [!code ++]
     comment: {
       use: true,
-      repo: "open17/vitepress-theme-open17",
+      repo: "open17/@velonor/theme",
       repo_id: "R_kgDOLkFVUg", // [!code --]
       repoId: "R_kgDOLkFVUg", // [!code ++]
       category: "Announcements",
@@ -158,7 +158,7 @@ declare namespace Open17Theme {
 }
 
 // 主配置接口 ThemeConfig
-declare module "vitepress-theme-open17/config" {
+declare module "@velonor/theme/config" {
   import type { DefaultTheme } from "vitepress";
   export interface ThemeConfig extends DefaultTheme.Config {
     blog?: Open17Theme.BlogConfig; // 博客配置
@@ -170,3 +170,4 @@ declare module "vitepress-theme-open17/config" {
 ```
 
 :::
+

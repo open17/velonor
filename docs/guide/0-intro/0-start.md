@@ -6,7 +6,7 @@
 
 ```bash
 # my-blog 替换为你的项目名
-npm create open17-blog my-blog
+npm create @velonor/blog my-blog
 ```
 
 ## :hammer_and_wrench: 手动开始
@@ -15,13 +15,13 @@ npm create open17-blog my-blog
 
 :::code-group
 ```shell [yarn]
-yarn add -D vitepress-theme-open17
+yarn add -D @velonor/theme
 ```
 ```shell [npm]
-npm i vitepress-theme-open17 -D
+npm i @velonor/theme -D
 ```
 ```shell [pnpm]
-pnpm add -D vitepress-theme-open17
+pnpm add -D @velonor/theme
 ```
 :::
 
@@ -29,7 +29,7 @@ pnpm add -D vitepress-theme-open17
 
 ```js
 // .vitepress/theme/index.js
-import Theme from 'vitepress-theme-open17'
+import Theme from '@velonor/theme'
 import 'virtual:uno.css'
 export default Theme
 ```
@@ -38,7 +38,7 @@ export default Theme
 
 ```ts
 // .vitepress/config.ts
-import type { ThemeConfig } from 'vitepress-theme-open17/config'
+import type { ThemeConfig } from '@velonor/theme/config'
 import { defineConfigWithTheme } from 'vitepress'
 import UnoCSS from 'unocss/vite'
 
@@ -46,7 +46,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   vite: {
     plugins: [UnoCSS()],
     ssr: {
-      noExternal: ['vitepress-velonor', 'vitepress-theme-open17'],
+      noExternal: ['@velonor/engine', '@velonor/theme'],
     },
   },
   themeConfig: {
@@ -61,3 +61,5 @@ export default defineConfigWithTheme<ThemeConfig>({
 npm i
 npm run dev
 ```
+
+

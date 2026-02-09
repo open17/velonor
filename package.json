@@ -23,8 +23,10 @@
     "markdown-it-mathjax3": "^4.3.2",
     "vite": "^5.2.14",
     "vitepress-sidebar": "^1.22.0",
-    "vitepress-theme-open17": "workspace:*",
-    "vitepress-velonor": "workspace:*",
+    "@velonor/theme": "workspace:*",
+    "@velonor/engine": "workspace:*",
     "vue": "^3.4.21"
   }
 }
+
+

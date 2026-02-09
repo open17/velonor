@@ -8,7 +8,7 @@
       ]
     }
   },
-  "version": "1.4.0",
+  "version": "1.0.3",
   "exports": {
     ".": "./src/index.ts",
     "./genFeed": "./src/genFeed.mjs",
@@ -16,8 +16,8 @@
   },
   "main": "./src/index.ts",
   "license": "Apache-2.0",
-  "author": "open17 <opensci@163.com>",
-  "name": "vitepress-theme-open17",
+  "author": "velonor <opensci@163.com>",
+  "name": "@velonor/theme",
   "homepage": "https://vitepress.open17.vip",
   "files": [
     "src",
@@ -26,7 +26,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/open17/vitepress-theme-open17.git"
+    "url": "git+https://github.com/open17/velonor.git"
   },
   "peerDependencies": {
     "@giscus/vue": "^3.0.0",
@@ -43,7 +43,7 @@
   ],
   "dependencies": {
     "feed": "^4.2.2",
-    "vitepress-velonor": "^0.1.0"
+    "@velonor/engine": "^1.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.14.0",
@@ -64,3 +64,4 @@
     "format": "prettier --write src"
   }
 }
+

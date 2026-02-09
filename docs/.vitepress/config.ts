@@ -1,5 +1,5 @@
-import type { ThemeConfig } from "vitepress-theme-open17/config";
-import { genFeed } from "vitepress-theme-open17/genFeed";
+import type { ThemeConfig } from "@velonor/theme/config";
+import { genFeed } from "@velonor/theme/genFeed";
 import { defineConfigWithTheme } from "vitepress";
 import UnoCSS from "unocss/vite";
 import { fileURLToPath, URL } from "node:url";

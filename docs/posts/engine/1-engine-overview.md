@@ -6,15 +6,15 @@ tags:
   - 概览
 ---
 
-`vitepress-velonor` 是一个面向 VitePress 的**博客微引擎**，提供可复用的逻辑与数据能力，帮助你快速开发一个属于你自己的博客主题。
+`@velonor/engine` 是一个面向 VitePress 的**博客微引擎**，提供可复用的逻辑与数据能力，帮助你快速开发一个属于你自己的博客主题。
 
 ---
 
 它分为三类入口：
 
-- `vitepress-velonor`：纯逻辑与通用工具
-- `vitepress-velonor/client`：运行期状态与 URL 同步
-- `vitepress-velonor/loader`：构建期数据 loader 工厂
+- `@velonor/engine`：纯逻辑与通用工具
+- `@velonor/engine/client`：运行期状态与 URL 同步
+- `@velonor/engine/loader`：构建期数据 loader 工厂
 
 ## 核心功能
 
@@ -22,3 +22,4 @@ tags:
 - 支持标签/分类状态管理与 URL 同步
 - 支持归档数据、标签/分类统计
 - 站点页面（tags/archive/blog）自动定位,返回对应链接
+

@@ -6,7 +6,7 @@ tags:
   - Loader
 ---
 
-`vitepress-velonor` 是一个面向 VitePress 的**博客微引擎**，提供可复用的逻辑与数据能力，帮助你快速开发一个属于你自己的博客主题。
+`@velonor/engine` 是一个面向 VitePress 的**博客微引擎**，提供可复用的逻辑与数据能力，帮助你快速开发一个属于你自己的博客主题。
 
 ---
 
@@ -18,7 +18,7 @@ tags:
 ## 1. Posts
 
 ```ts
-import { createPostsLoader } from 'vitepress-velonor/loader';
+import { createPostsLoader } from '@velonor/engine/loader';
 export default createPostsLoader('posts/**/*.md');
 ```
 
@@ -29,7 +29,7 @@ export default createPostsLoader('posts/**/*.md');
 ## 2. Page Links
 
 ```ts
-import { createPageLinksLoader } from 'vitepress-velonor/loader';
+import { createPageLinksLoader } from '@velonor/engine/loader';
 export default createPageLinksLoader(['**/*.md']);
 ```
 
@@ -48,7 +48,7 @@ export default createPageLinksLoader(['**/*.md']);
 ## 3. Tags
 
 ```ts
-import { createTagsLoader } from 'vitepress-velonor/loader';
+import { createTagsLoader } from '@velonor/engine/loader';
 export default createTagsLoader('posts/**/*.md');
 ```
 
@@ -67,7 +67,7 @@ export default createTagsLoader('posts/**/*.md');
 ## 4. Categories
 
 ```ts
-import { createCategoriesLoader } from 'vitepress-velonor/loader';
+import { createCategoriesLoader } from '@velonor/engine/loader';
 export default createCategoriesLoader('posts/**/*.md');
 ```
 
@@ -86,7 +86,7 @@ export default createCategoriesLoader('posts/**/*.md');
 ## 5. Archive
 
 ```ts
-import { createArchiveLoader } from 'vitepress-velonor/loader';
+import { createArchiveLoader } from '@velonor/engine/loader';
 export default createArchiveLoader('posts/**/*.md');
 ```
 
@@ -97,4 +97,5 @@ export default createArchiveLoader('posts/**/*.md');
   totalPosts: number;
 }
 ```
+
 

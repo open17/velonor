@@ -6,7 +6,7 @@
 
 ```ts
 // .vitepress/config.ts
-import type { ThemeConfig } from 'vitepress-theme-open17/config'
+import type { ThemeConfig } from '@velonor/theme/config'
 import { defineConfigWithTheme } from 'vitepress'
 
 export default defineConfigWithTheme<ThemeConfig>({
@@ -19,7 +19,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     search: { provider: 'local' },
     footer: {
       message:
-        'Released under the <a href="https://github.com/open17/vitepress-theme-open17/blob/template/LICENSE">Apache 2.0 License</a>.',
+        'Released under the <a href="https://github.com/open17/@velonor/theme/blob/template/LICENSE">Apache 2.0 License</a>.',
       copyright:
         'Copyright © 2023-present <a href="https://github.com/open17">open17</a>',
     },
@@ -62,3 +62,4 @@ export default defineConfigWithTheme<ThemeConfig>({
 - 分类功能：默认按 posts 文件夹的一级目录作为分类；根目录下的文章归类为“其他”。
 - 多语言：分页和标签/分类等 UI 文案支持中英文切换，跟随站点语言。
 - 预留配置：homePageLink、archivePageLink 已在类型中定义，但当前版本未使用。
+

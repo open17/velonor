@@ -1,4 +1,4 @@
-declare type Open17Image = string | { light?: string; dark?: string };
+﻿declare type Open17Image = string | { light?: string; dark?: string };
 
 declare namespace Open17Theme {
   // 用户卡片配置
@@ -62,7 +62,7 @@ declare namespace Open17Theme {
 }
 
 // 主配置接口 ThemeConfig
-declare module 'vitepress-theme-open17/config' {
+declare module '@velonor/theme/config' {
   import type { DefaultTheme } from 'vitepress';
   export interface ThemeConfig extends DefaultTheme.Config {
     blog?: Open17Theme.BlogConfig; // 博客配置
@@ -71,3 +71,4 @@ declare module 'vitepress-theme-open17/config' {
     feed?: Open17Theme.FeedConfig;
   }
 }
+

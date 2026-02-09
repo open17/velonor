@@ -62,7 +62,7 @@
 import { computed } from 'vue';
 import { withBase, useData } from 'vitepress';
 import ThemeLayout from './ThemeLayout.vue';
-import { getLocalizedString } from 'vitepress-velonor';
+import { getLocalizedString } from '@velonor/engine';
 import { useTagFilter } from '../composables/useTagFilter';
 import { data as pageLinks } from '../page-links.data';
 import { data as tagIndex } from '../tags.data';
@@ -102,3 +102,4 @@ const filteredList = computed(() => {
   });
 });
 </script>
+

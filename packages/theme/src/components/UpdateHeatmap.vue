@@ -39,7 +39,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useData } from 'vitepress';
-import { parseDateValue } from 'vitepress-velonor';
+import { parseDateValue } from '@velonor/engine';
 import { data as posts } from '../posts.data.js';
 
 const props = defineProps({
@@ -125,3 +125,4 @@ const legendStyle = (level) => ({
   backgroundColor: levelColor(level),
 });
 </script>
+

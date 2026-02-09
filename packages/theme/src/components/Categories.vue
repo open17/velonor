@@ -59,7 +59,7 @@
 import { computed } from 'vue';
 import { withBase, useData } from 'vitepress';
 import ThemeLayout from './ThemeLayout.vue';
-import { getLocalizedString } from 'vitepress-velonor';
+import { getLocalizedString } from '@velonor/engine';
 import { useCategories } from '../composables/useCategories';
 import { data as pageLinks } from '../page-links.data';
 import { data as categoriesIndex } from '../categories.data';
@@ -81,3 +81,4 @@ const uniqueCategoryCount = computed(() => categoriesIndex.uniqueCategoryCount ?
 
 const filteredList = computed(() => filterPostsByActiveCategory());
 </script>
+

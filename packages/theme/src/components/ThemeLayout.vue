@@ -1,10 +1,10 @@
-<script setup>
+﻿<script setup>
 import { useData } from 'vitepress';
 import { computed, watch, ref } from 'vue';
 import UserCard from './UserCard.vue';
 import WidgetCard from './WidgetCard.vue';
 import UpdateHeatmap from './UpdateHeatmap.vue';
-import { getLocalizedString } from 'vitepress-velonor';
+import { getLocalizedString } from '@velonor/engine';
 import { useTagFilter } from '../composables/useTagFilter';
 import { useCategories } from '../composables/useCategories';
 import { data as pageLinks } from '../page-links.data';
@@ -212,3 +212,4 @@ watch(
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 </style>
+

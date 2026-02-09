@@ -1,11 +1,11 @@
 {
-  "name": "create-open17-blog",
-  "version": "1.1.5",
-  "description": "CLI tool for quickly setting up vitepress-theme-open17 blog",
+  "name": "@velonor/create-blog",
+  "version": "1.0.2",
+  "description": "CLI tool for quickly setting up a Velonor VitePress blog",
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
-    "create-open17-blog": "./dist/index.js"
+    "create-blog": "./dist/index.js"
   },
   "files": [
     "dist"
@@ -15,11 +15,11 @@
     "blog",
     "cli",
     "scaffolding",
-    "open17"
+    "velonor"
   ],
-  "author": "open17 <opensci@163.com>",
+  "author": "velonor <opensci@163.com>",
   "license": "Apache-2.0",
-  "repository": "https://github.com/open17/vitepress-theme-open17.git",
+  "repository": "https://github.com/open17/velonor.git",
   "homepage": "https://vitepress.open17.vip",
   "dependencies": {
     "commander": "^11.1.0",
@@ -45,3 +45,4 @@
     "node": ">=16.0.0"
   }
 }
+

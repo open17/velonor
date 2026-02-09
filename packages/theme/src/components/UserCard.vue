@@ -3,7 +3,7 @@
     <div class="hidden md:flex w-full md:rounded-2xl p-6 flex-col justify-center items-center gap-2 dark:shadow-none shadow-lg border-2 border-[var(--blog-border-c)] bg-[var(--vp-c-blog-bg)]/95 backdrop-blur-md"
         v-if="!props.isMobile && !userConfig?.hidden">
         <!-- Avatar -->
-        <img :src="userConfig?.avatar" v-if="userConfig?.avatar" alt="avatar"
+        <img :src="typeof userConfig?.avatar === 'string' ? userConfig.avatar : userConfig?.avatar?.light || userConfig?.avatar?.dark" v-if="userConfig?.avatar" alt="avatar"
             class="object-cover object-center w-24 h-24 rounded-full ring-2 ring-[var(--blog-border-c)]" />
         <div class="mt-3" v-else></div>
         <!-- Name -->
@@ -26,7 +26,7 @@
     </div>
     <!-- 移动端个人信息显示 -->
     <div class="flex md:hidden justify-center items-center w-full mt-8 flex-col gap-3" v-else-if="!userConfig?.hidden">
-        <img :src="userConfig?.avatar" v-if="userConfig?.avatar" alt="avatar"
+        <img :src="typeof userConfig?.avatar === 'string' ? userConfig.avatar : userConfig?.avatar?.light || userConfig?.avatar?.dark" v-if="userConfig?.avatar" alt="avatar"
             class="object-cover object-center w-32 rounded-full" />
         <!-- 昵称 -->
         <div class="text-2xl font-bold text-center">{{ userConfig?.name }}</div>

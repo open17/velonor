@@ -1,4 +1,4 @@
-﻿---
+---
 layout: home
 lastUpdated: false
 bgImage: 
@@ -35,11 +35,11 @@ features:
     details: 分页、归档、标签、分类、RSS 等,你需要的博客功能全都有
     link: "/guide/0-intro/1-use"
     linkText: "主题能力"
-  - title: 自定义主题
+  - title: 开发主题
     icon: 🧩
     details: 基于Velonor博客微引擎, 快速开发属于你自己的博客主题
     link: "posts/engine/1-engine-overview"
-    linkText: "使用详情"
+    linkText: "更多详情"
 ---
 
 

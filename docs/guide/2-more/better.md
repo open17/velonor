@@ -15,7 +15,7 @@
 
 ```ts
 // .vitepress/config.ts
-import type { ThemeConfig } from 'vitepress-theme-open17/config'
+import type { ThemeConfig } from '@velonor/theme/config'
 import { defineConfigWithTheme } from 'vitepress'
 
 export default defineConfigWithTheme<ThemeConfig>({
@@ -65,7 +65,7 @@ pin: true
 ---
 
 :::info
-内容同步自[CHANGELOG](https://github.com/open17/vitepress-theme-open17/blob/template/CHANGELOG.md)
+内容同步自[CHANGELOG](https://github.com/open17/@velonor/theme/blob/template/CHANGELOG.md)
 
 最新同步时间: {{ Date()}}
 
@@ -151,4 +151,5 @@ vite: {
 可以参考这篇博客:
 
 - [在 vitepress 中使用幻灯片](https://www.open17.vip/posts/project/2024-10-15-vitepress-reveal.html)
+
 

@@ -1,4 +1,4 @@
-﻿---
+---
 layout: categories
 lastUpdated: false
 bgImage:
